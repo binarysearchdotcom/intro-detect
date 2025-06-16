@@ -1,5 +1,5 @@
 .env
 embeddings_by_show_v2
 TODO.md
-data/raw
+data/raw/*
 __pycache__
