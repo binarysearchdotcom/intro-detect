@@ -2,9 +2,9 @@ import numpy as np
 import faiss
 from utils.parse import frames_to_hms
 
-# ---------- параметры ----------
-path_a = "embeddings_by_show_v2/Бодкин/1 сезон/серия_2.npy"
-path_b = "embeddings_by_show_v2/Бодкин/1 сезон/серия_3.npy"
+
+path_a = "embeddings_by_show_v2/Блеск/2 сезон/серия_2.npy"
+path_b = "embeddings_by_show_v2/Блеск/2 сезон/серия_3.npy"
 MIN_LEN, MAX_LEN = 2, 30  # окно, кадры
 FPS = 2
 SCORE_TH = 0.915
@@ -53,13 +53,13 @@ merged = []
 for res in results:
     if not merged:
         merged.append(res)
-        continue
-    last = merged[-1]
-    if res["start_B"] <= last["end_B"] + MERGE_GAP:
-        last["end_B"] = max(last["end_B"], res["end_B"])
-        last["score"] = max(last["score"], res["score"])
     else:
-        merged.append(res)
+        last = merged[-1]
+        if res["start_B"] <= last["end_B"] + MERGE_GAP:
+            last["end_B"] = max(last["end_B"], res["end_B"])
+            last["score"] = max(last["score"], res["score"])
+        else:
+            merged.append(res)
 
 
 if merged:

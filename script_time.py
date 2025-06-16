@@ -28,18 +28,16 @@ for vid, info in labels.items():
     if fixed_duration > 0:
         fixed_durations.append(fixed_duration)
 
-print("Статистика заставок:\n")
+print("Статистика заставок:")
 
 if raw_durations:
     avg_raw = sum(raw_durations) / len(raw_durations)
-    print(f"Без фикса:  средняя = {avg_raw:.2f} сек | примеров: {len(raw_durations)}")
+    print(f"Без фикса: средняя = {avg_raw:.2f} сек | примеров: {len(raw_durations)}")
 else:
-    print("Без фикса:   нет подходящих примеров")
+    print("Без фикса: нет подходящих примеров")
 
 if fixed_durations:
     avg_fixed = sum(fixed_durations) / len(fixed_durations)
-    print(
-        f"С фиксом:    средняя = {avg_fixed:.2f} сек | примеров: {len(fixed_durations)}"
-    )
+    print(f"С фиксом: средняя = {avg_fixed:.2f} сек | примеров: {len(fixed_durations)}")
 else:
-    print("С фиксом:    нет подходящих примеров")
+    print("С фиксом: нет подходящих примеров")
