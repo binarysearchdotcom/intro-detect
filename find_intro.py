@@ -13,6 +13,8 @@ MERGE_GAP = 15  # объединение, кадры
 
 A = np.load(path_a).astype("float32")  # [Ta, 512]
 B = np.load(path_b).astype("float32")  # [Tb, 512]
+
+# faiss.normalize_L2 теоретически работает быстрее, чем numpy нормализация
 faiss.normalize_L2(A)
 faiss.normalize_L2(B)
 
