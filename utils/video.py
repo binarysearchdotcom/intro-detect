@@ -14,10 +14,14 @@ def extract_frames(video_path: str, fps: int, resize: tuple[int, int], first_pct
         ok, frame = cap.read()
         if not ok:
             break
+
+        # NOTE: возможно стоит заменить на cap.set(cv2.CAP_PROP_POS_FRAMES, i),
+        # чтобы не читать все кадры подряд при большом step (ускоряет при больших видео)
         if idx % step == 0:
             frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
             frame = cv2.resize(frame, resize)
             frames.append(Image.fromarray(frame))
         idx += 1
+
     cap.release()
     return frames
